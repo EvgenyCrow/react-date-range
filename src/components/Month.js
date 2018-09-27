@@ -17,7 +17,7 @@ import {
 } from 'date-fns';
 import { getMonthDisplayRange } from '../utils';
 
-function renderWeekdays(styles, dateOptions) {
+function renderWeekdays(styles, weekDaysDisplayFormat, dateOptions) {
   const now = new Date();
   return (
     <div className={styles.weekDays}>
@@ -26,7 +26,7 @@ function renderWeekdays(styles, dateOptions) {
         end: endOfWeek(now, dateOptions),
       }).map((day, i) => (
         <span className={styles.weekDay} key={i}>
-          {format(day, 'ddd', dateOptions)}
+          {format(day, weekDaysDisplayFormat, dateOptions)}
         </span>
       ))}
     </div>
@@ -36,7 +36,7 @@ function renderWeekdays(styles, dateOptions) {
 class Month extends PureComponent {
   render() {
     const now = new Date();
-    const { displayMode, focusedRange, drag, styles, disabledDates } = this.props;
+    const { displayMode, focusedRange, drag, styles, disabledDates, weekDaysDisplayFormat } = this.props;
     const minDate = this.props.minDate && startOfDay(this.props.minDate);
     const maxDate = this.props.maxDate && endOfDay(this.props.maxDate);
     const monthDisplay = getMonthDisplayRange(this.props.month, this.props.dateOptions);
@@ -60,7 +60,7 @@ class Month extends PureComponent {
             {format(this.props.month, this.props.monthDisplayFormat, this.props.dateOptions)}
           </div>
         ) : null}
-        {this.props.showWeekDays && renderWeekdays(styles, this.props.dateOptions)}
+        {this.props.showWeekDays && renderWeekdays(styles, weekDaysDisplayFormat, this.props.dateOptions)}
         <div className={styles.days} onMouseLeave={this.props.onMouseLeave}>
           {eachDayOfInterval({ start: monthDisplay.start, end: monthDisplay.end }).map(
             (day, index) => {
