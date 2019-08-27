@@ -1,6 +1,6 @@
 {
-  "name": "react-date-range",
-  "version": "1.0.0-beta",
+  "name": "@evgenycrow/react-date-range-custom",
+  "version": "1.0.15",
   "description": "A React component for choosing dates and date ranges.",
   "main": "dist/index.js",
   "scripts": {
@@ -22,21 +22,25 @@
   ],
   "contributors": [
     "Burak Can <neoberg@gmail.com> (https://github.com/burakcan)",
-    "Mehmet Kamil Morcay <mehmetmorcay@gmail.com> (https://github.com/mkg0)"
+    "Mehmet Kamil Morcay <mehmetmorcay@gmail.com> (https://github.com/mkg0)",
+    "Engin Semih Basmacı <semih.basmaci@gmail.com> (https://github.com/mortargrind)"
   ],
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "http://github.com/Adphorus/react-date-range"
+    "url": "git+ssh://git@github.com/Adphorus/react-date-range.git"
   },
   "bugs": {
     "url": "http://github.com/Adphorus/react-date-range/issues"
   },
   "dependencies": {
+    "@material-ui/core": "^4.2.1",
     "classnames": "^2.2.1",
     "date-fns": "2.0.0-alpha.7",
     "prop-types": "^15.5.10",
-    "react-list": "^0.8.8"
+    "react-list": "^0.8.8",
+    "react-text-mask": "^5.4.3",
+    "text-mask-addons": "^3.8.0"
   },
   "peerDependencies": {
     "react": "^0.14 || ^15.0.0-rc || >=15.0"
@@ -77,5 +81,7 @@
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.9.7",
     "webpack-hot-middleware": "^2.21.0"
-  }
+  },
+  "homepage": "https://github.com/Adphorus/react-date-range#readme",
+  "author": ""
 }

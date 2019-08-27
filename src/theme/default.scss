@@ -17,7 +17,7 @@
     cursor: pointer;
     height: 2.5em;
     line-height: 2.5em;
-    border: 0px;
+    border: 0;
     background: transparent;
     width: 100%;
     color: #849095;
@@ -148,8 +148,6 @@
   position: absolute;
   left: 0;
   right: 0;
-  top: 0;
-  bottom: 0;
   top: 5px;
   bottom: 5px;
   display: flex;
@@ -243,7 +241,7 @@
     border-top-left-radius: 1.333em;
     border-bottom-left-radius: 1.333em;
     border-left-width: 1px;
-    left: 0px;
+    left: 0;
   }
 }
 
@@ -252,7 +250,7 @@
    border-top-right-radius: 1.333em;
    border-bottom-right-radius: 1.333em;
    border-right-width: 1px;
-   right: 0px;
+   right: 0;
  }
 }
 
@@ -261,11 +259,11 @@
   background: rgba(255, 255, 255, 0.09);
   position: absolute;
   top: 3px;
-  left: 0px;
-  right: 0px;
+  left: 0;
+  right: 0;
   bottom: 3px;
   pointer-events: none;
-  border: 0px solid currentColor;
+  border: 0 solid currentColor;
   z-index: 1;
 }
 
@@ -276,7 +274,7 @@
   border-bottom-width: 1px;
   border-top-left-radius: 1.333em;
   border-bottom-left-radius: 1.333em;
-  left: 0px;
+  left: 0;
 }
 
 .rdrDayInPreview{
@@ -290,8 +288,7 @@
   border-bottom-width: 1px;
   border-top-right-radius: 1.333em;
   border-bottom-right-radius: 1.333em;
-  right: 2px;
-  right: 0px;
+  right: 0;
 }
 
 .rdrDefinedRangesWrapper{
@@ -328,30 +325,11 @@
   text-align: left;
 }
 
-.rdrInputRanges{
-  padding: 10px 0;
-}
+.rdrInputRanges{}
 
-.rdrInputRange{
-  align-items: center;
-  padding: 5px 20px;
-}
+.rdrInputRange{}
 
-.rdrInputRangeInput{
-  width: 30px;
-  height: 30px;
-  line-height: 30px;
-  border-radius: 4px;
-  text-align: center;
-  border: solid 1px rgb(222, 231, 235);
-  margin-right: 10px;
-  color: rgb(108, 118, 122);
-  &:focus, &:hover{
-    border-color: rgb(180, 191, 196);
-    outline: 0;
-    color: #333;
-  }
-}
+.rdrInputRangeInput{}
 
 .rdrCalendarWrapper:not(.rdrDateRangeWrapper) .rdrDayHovered .rdrDayNumber:after{
   content: '';
@@ -360,8 +338,8 @@
   position: absolute;
   top: -2px;
   bottom: -2px;
-  left: 0px;
-  right: 0px;
+  left: 0;
+  right: 0;
   background: transparent;
 }
 

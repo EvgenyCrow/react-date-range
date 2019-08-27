@@ -26,6 +26,8 @@ import {
 } from 'date-fns';
 import defaultLocale from 'date-fns/locale/en-US';
 import coreStyles from '../styles';
+import TextField from '@material-ui/core/TextField';
+import MenuItem from '@material-ui/core/MenuItem';
 
 class Calendar extends PureComponent {
   constructor(props, context) {
@@ -116,20 +118,20 @@ class Calendar extends PureComponent {
       setTimeout(() => this.focusToDate(this.state.focusedDate), 1);
     }
   }
-  componentWillReceiveProps(nextProps) {
+  componentDidUpdate(prevProps) {
     const propMapper = {
       dateRange: 'ranges',
       date: 'date',
     };
-    const targetProp = propMapper[nextProps.displayMode];
-    if (this.props.locale !== nextProps.locale) {
-      this.dateOptions = { locale: nextProps.locale };
+    const targetProp = propMapper[this.props.displayMode];
+    if (this.props.locale !== prevProps.locale) {
+      this.dateOptions = { locale: this.props.locale };
     }
-    if (JSON.stringify(this.props.scroll) !== JSON.stringify(nextProps.scroll)) {
-      this.setState({ scrollArea: this.calcScrollArea(nextProps) });
+    if (JSON.stringify(this.props.scroll) !== JSON.stringify(this.props.scroll)) {
+      this.setState({ scrollArea: this.calcScrollArea(this.props) });
     }
-    if (nextProps[targetProp] !== this.props[targetProp]) {
-      this.updateShownDate(nextProps);
+    if (prevProps[targetProp] !== this.props[targetProp]) {
+      this.updateShownDate(this.props);
     }
   }
   changeShownDate(value, mode = 'set') {
@@ -167,6 +169,44 @@ class Calendar extends PureComponent {
     const styles = this.styles;
     return (
       <div onMouseUp={e => e.stopPropagation()} className={styles.monthAndYearWrapper}>
+        {showMonthAndYearPickers ? (
+          <span className={styles.monthAndYearPickers}>
+            <span className={styles.monthPicker}>
+              <TextField
+                select
+                value={focusedDate.getMonth()}
+                onChange={e => changeShownDate(e.target.value, 'setMonth')}>
+                {locale.localize.months().map((month, i) => (
+                  <MenuItem key={i} value={i}>
+                    {month}
+                  </MenuItem>
+                ))}
+              </TextField>
+            </span>
+            <span className={styles.monthAndYearDivider} />
+            <span className={styles.yearPicker}>
+              <TextField
+                select
+                value={focusedDate.getFullYear()}
+                onChange={e => changeShownDate(e.target.value, 'setYear')}>
+                {new Array(upperYearLimit - lowerYearLimit + 1)
+                  .fill(upperYearLimit)
+                  .map((val, i) => {
+                    const year = val - i;
+                    return (
+                      <MenuItem key={year} value={year}>
+                        {year}
+                      </MenuItem>
+                    );
+                  })}
+              </TextField>
+            </span>
+          </span>
+        ) : (
+          <span className={styles.monthAndYearPickers}>
+            {locale.localize.months()[focusedDate.getMonth()]} {focusedDate.getFullYear()}
+          </span>
+        )}
         {showMonthArrow ? (
           <button
             type="button"
@@ -175,42 +215,6 @@ class Calendar extends PureComponent {
             <i />
           </button>
         ) : null}
-        {showMonthAndYearPickers ? (
-          <span className={styles.monthAndYearPickers}>
-            <span className={styles.monthPicker}>
-              <select
-                value={focusedDate.getMonth()}
-                onChange={e => changeShownDate(e.target.value, 'setMonth')}>
-                {locale.localize.months().map((month, i) => (
-                  <option key={i} value={i}>
-                    {month}
-                  </option>
-                ))}
-              </select>
-            </span>
-            <span className={styles.monthAndYearDivider} />
-            <span className={styles.yearPicker}>
-              <select
-                value={focusedDate.getFullYear()}
-                onChange={e => changeShownDate(e.target.value, 'setYear')}>
-                {new Array(upperYearLimit - lowerYearLimit + 1)
-                  .fill(upperYearLimit)
-                  .map((val, i) => {
-                    const year = val - i;
-                    return (
-                      <option key={year} value={year}>
-                        {year}
-                      </option>
-                    );
-                  })}
-              </select>
-            </span>
-          </span>
-        ) : (
-          <span className={styles.monthAndYearPickers}>
-            {locale.localize.months()[focusedDate.getMonth()]} {focusedDate.getFullYear()}
-          </span>
-        )}
         {showMonthArrow ? (
           <button
             type="button"

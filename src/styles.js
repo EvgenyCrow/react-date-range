@@ -43,6 +43,7 @@ export default {
   inputRanges: 'rdrInputRanges',
   inputRange: 'rdrInputRange',
   inputRangeInput: 'rdrInputRangeInput',
+  inputRangeLabel: 'rdrInputRangeLabel',
   dateRangePickerWrapper: 'rdrDateRangePickerWrapper',
   staticRangeLabel: 'rdrStaticRangeLabel',
   staticRangeSelected: 'rdrStaticRangeSelected',
